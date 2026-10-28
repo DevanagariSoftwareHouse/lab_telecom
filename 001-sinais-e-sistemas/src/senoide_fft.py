@@ -4,6 +4,8 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import numpy as np
 
+from lab_telecom.export import save_figure
+
 FS = 1000  # Hz
 FREQUENCIA = 50  # Hz
 DURACAO = 1.0  # s
@@ -28,7 +30,7 @@ eixos[1].set(xlabel='Frequência (Hz)', ylabel='Amplitude', title='Espectro unil
 eixos[1].set_xlim(0, 150)
 eixos[1].grid(True)
 figura.tight_layout()
-saida = Path(__file__).resolve().parent.parent / 'resultados' / 'senoide_fft.png'
-saida.parent.mkdir(parents=True, exist_ok=True)
-figura.savefig(saida, dpi=150)
-print(f'Gráfico salvo em: {saida}')
+output_dir = Path(__file__).resolve().parent.parent / 'resultados'
+for path in save_figure(figura, output_dir, 'senoide_fft'):
+    print(f'Gráfico salvo em: {path}')
+plt.close(figura)
