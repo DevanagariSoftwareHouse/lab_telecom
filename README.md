@@ -2,17 +2,19 @@
 
 Laboratórios reproduzíveis de Engenharia de Telecomunicações em Python.
 
-Convenção de diretórios: `NNN-nome-do-laboratorio`, com três dígitos, letras minúsculas, sem acentos e palavras separadas por hífens.
+Versão inicial: **0.0.0**. Diretórios seguem `NNN-nome-do-laboratorio`.
 
-## Laboratório 001 — Sinais e Sistemas
-
-Experimento: gerar uma senoide, calcular sua FFT e visualizar o sinal no tempo e seu espectro.
+## Ambiente compartilhado
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -e .
 python 001-sinais-e-sistemas/src/senoide_fft.py
 ```
 
-O gráfico será salvo em `001-sinais-e-sistemas/resultados/senoide_fft.png`.
+O `startup.py` define a política global de exportação. A função `lab_telecom.export.save_figure` salva cada figura nos formatos SVG, PDF e PNG, com 300 dpi para saídas rasterizadas.
+
+## Laboratório 001 — Sinais e Sistemas
+
+O experimento gera uma senoide de 50 Hz, calcula sua FFT e exporta os gráficos para `001-sinais-e-sistemas/resultados/`.
